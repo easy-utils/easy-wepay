@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="wePayHostDoubleLiveHandler" class="club.easyutils.wepay.handler.doubleLive.WePayHostDoubleLiveHandler">
+        <property name="hosts">
+            <list>
+                <value>https://api.mch.weixin.qq.com</value>
+                <value>https://api2.mch.weixin.qq.com/pay</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
