@@ -1,7 +1,7 @@
-package club.easyutils.wepay.model.request;
+package club.easyutils.wepay.entity.request;
 
 import club.easyutils.wepay.adapter.CdataJaxbAdapter;
-import club.easyutils.wepay.model.BaseRequestModel;
+import club.easyutils.wepay.entity.BaseRequest;
 import lombok.*;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name="xml")
-public class UnifiedOrderRequest implements BaseRequestModel {
+public class UnifiedOrderRequest implements BaseRequest {
 
     // ---------- Request Attributes ----------
 

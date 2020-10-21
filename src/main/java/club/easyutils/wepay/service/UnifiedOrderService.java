@@ -1,8 +1,8 @@
 package club.easyutils.wepay.service;
 
 import club.easyutils.wepay.config.UnifiedOrderConfig;
-import club.easyutils.wepay.model.request.UnifiedOrderRequest;
-import club.easyutils.wepay.model.request.UnifiedOrderResponse;
+import club.easyutils.wepay.entity.request.UnifiedOrderRequest;
+import club.easyutils.wepay.entity.request.UnifiedOrderResponse;
 import club.easyutils.wepay.util.HttpUtil;
 import org.springframework.stereotype.Service;
 

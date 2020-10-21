@@ -7,7 +7,7 @@
         <property name="hosts">
             <list>
                 <value>https://api.mch.weixin.qq.com</value>
-                <value>https://api2.mch.weixin.qq.com/pay</value>
+                <value>https://api2.mch.weixin.qq.com</value>
             </list>
         </property>
     </bean>
