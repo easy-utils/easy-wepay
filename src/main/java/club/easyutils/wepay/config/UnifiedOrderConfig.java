@@ -1,5 +1,6 @@
 package club.easyutils.wepay.config;
 
+import club.easyutils.wepay.util.HostUtil;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -12,6 +13,6 @@ public enum UnifiedOrderConfig {
     private String url;
 
     public String getUrl() {
-        return BaseHostConfig.WEPAY_HOST_MAIN.getUrl() + url;
+        return HostUtil.getDoubleLiveHost() + url;
     }
 }

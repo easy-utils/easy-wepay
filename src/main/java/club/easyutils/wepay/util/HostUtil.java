@@ -29,11 +29,11 @@ public class HostUtil {
         if (Validator.isNotNull(hostUtil.doubleLiveHandler)){
             return hostUtil.doubleLiveHandler.getHost();
         }
-        // 返回高可用域名
-        return BaseHostConfig.WEPAY_HOST_MAIN.getBasicUrl();
+        // 返回默认域名
+        return BaseHostConfig.WEPAY_HOST_MAIN.getUrl();
     }
 
     public static String getDefaultHost(){
-        return BaseHostConfig.WEPAY_HOST_MAIN.getBasicUrl();
+        return BaseHostConfig.WEPAY_HOST_MAIN.getUrl();
     }
 }

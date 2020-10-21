@@ -13,18 +13,12 @@ public enum BaseHostConfig {
 
     WEPAY_HOST_MAIN("https://api.mch.weixin.qq.com"),
 
-    WEPAY_HOST_STANDBY("https://api2.mch.weixin.qq.com/pay");
+    WEPAY_HOST_STANDBY("https://api2.mch.weixin.qq.com");
 
     private String url;
 
     public String getUrl() {
-        return HostUtil.getDoubleLiveHost();
-    }
-
-    public String getBasicUrl() {
         return url;
     }
-
-
 
 }
