@@ -1,4 +1,4 @@
-package club.easyutils.wepay.adapter;
+package club.easyutils.wepay.adapter.xml;
 
 import cn.hutool.core.lang.Validator;
 

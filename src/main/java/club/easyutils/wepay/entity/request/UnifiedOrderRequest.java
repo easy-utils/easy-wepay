@@ -1,6 +1,6 @@
 package club.easyutils.wepay.entity.request;
 
-import club.easyutils.wepay.adapter.CdataJaxbAdapter;
+import club.easyutils.wepay.adapter.xml.CdataJaxbAdapter;
 import club.easyutils.wepay.entity.BaseRequest;
 import lombok.*;
 

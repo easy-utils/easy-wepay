@@ -1,10 +1,8 @@
-package club.easyutils.wepay.adapter;
+package club.easyutils.wepay.adapter.doubleLive;
 
 import club.easyutils.wepay.model.doubleLive.DoubleLiveAnalyzeModel;
 import club.easyutils.wepay.util.MathUtil;
-import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.lang.Validator;
-import org.springframework.stereotype.Service;
 
 import java.util.*;
 

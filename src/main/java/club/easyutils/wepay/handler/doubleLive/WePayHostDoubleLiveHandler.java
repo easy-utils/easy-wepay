@@ -1,6 +1,6 @@
 package club.easyutils.wepay.handler.doubleLive;
 
-import club.easyutils.wepay.adapter.DoubleLiveDataAdapter;
+import club.easyutils.wepay.adapter.doubleLive.DoubleLiveDataAdapter;
 import club.easyutils.wepay.constant.GuavaConstant;
 import club.easyutils.wepay.handler.BaseHandler;
 import cn.hutool.core.date.StopWatch;
