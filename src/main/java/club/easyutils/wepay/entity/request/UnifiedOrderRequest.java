@@ -8,6 +8,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+/**
+ * 统一创单请求实体类
+ * @author rainyblossom
+ */
 @Setter
 @Builder
 @NoArgsConstructor

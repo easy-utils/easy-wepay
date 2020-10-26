@@ -1,4 +1,4 @@
-package club.easyutils.wepay.entity.request;
+package club.easyutils.wepay.entity.response;
 
 import club.easyutils.wepay.adapter.xml.CdataJaxbAdapter;
 import club.easyutils.wepay.entity.BaseResponse;
@@ -8,6 +8,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+/**
+ * 统一创单响应实体类
+ * @author rainyblossom
+ */
 @Setter
 @Builder
 @NoArgsConstructor
