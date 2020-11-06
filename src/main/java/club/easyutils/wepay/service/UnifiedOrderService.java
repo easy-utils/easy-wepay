@@ -4,6 +4,7 @@ import club.easyutils.wepay.config.UnifiedOrderConfig;
 import club.easyutils.wepay.entity.request.UnifiedOrderRequest;
 import club.easyutils.wepay.entity.response.UnifiedOrderResponse;
 import club.easyutils.wepay.util.HttpUtil;
+import club.easyutils.wepay.util.XmlUtil;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,8 +24,10 @@ public class UnifiedOrderService {
      * @param unifiedOrderRequest
      * @return
      */
-    UnifiedOrderResponse create(UnifiedOrderRequest unifiedOrderRequest){
-        return (UnifiedOrderResponse) HttpUtil.doPost(UnifiedOrderConfig.WEPAY_ORDER_UNIFIED.getUrl(), unifiedOrderRequest);
+    public UnifiedOrderResponse create(UnifiedOrderRequest unifiedOrderRequest){
+
+        String xmlStr = HttpUtil.doPost(UnifiedOrderConfig.WEPAY_ORDER_UNIFIED.getUrl(), unifiedOrderRequest);
+        return XmlUtil.xmlToBean(UnifiedOrderResponse.class, xmlStr);
     }
 
 }

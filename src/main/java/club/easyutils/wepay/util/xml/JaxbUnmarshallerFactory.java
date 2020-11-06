@@ -11,7 +11,7 @@ public class JaxbUnmarshallerFactory extends JaxbMarshallerFactory{
     @Override
     public PooledObject makeObject(Object key) throws Exception {
         Class<?> clazz = (Class<?>)key;
-        if(context.containsKey(key)){
+        if(!context.containsKey(key)){
             JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
             context.put(clazz, jaxbContext);
         }

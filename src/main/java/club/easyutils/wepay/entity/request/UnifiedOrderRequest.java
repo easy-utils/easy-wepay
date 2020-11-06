@@ -1,23 +1,25 @@
 package club.easyutils.wepay.entity.request;
 
-import club.easyutils.wepay.adapter.xml.CdataJaxbAdapter;
 import club.easyutils.wepay.entity.BaseRequest;
 import lombok.*;
+import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * 统一创单请求实体类
  * @author rainyblossom
  */
-@Setter
 @Builder
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name="xml")
-public class UnifiedOrderRequest implements BaseRequest {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class UnifiedOrderRequest extends BaseRequest {
 
     // ---------- Request Attributes ----------
 
@@ -27,7 +29,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      */
     @XmlElement(name="appid")
     @NonNull
-    private String appId;
+    private String appid;
 
     /**
      * 商户号
@@ -35,14 +37,14 @@ public class UnifiedOrderRequest implements BaseRequest {
      */
     @XmlElement(name="mch_id")
     @NonNull
-    private String mchId;
+    private String mch_id;
 
     /**
      * 设备号
      * 自定义参数，可以为终端设备号(门店号或收银设备ID)，PC网页或公众号内支付可以传"WEB"
      */
     @XmlElement(name = "device_info")
-    private String deviceInfo;
+    private String device_info;
 
     /**
      * 随机字符串
@@ -51,7 +53,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      */
     @XmlElement(name = "nonce_str")
     @NonNull
-    private String nonceStr;
+    private String nonce_str;
 
     /**
      * 签名
@@ -59,7 +61,6 @@ public class UnifiedOrderRequest implements BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_3
      */
     @XmlElement(name = "sign")
-    @NonNull
     private String sign;
 
     /**
@@ -67,11 +68,12 @@ public class UnifiedOrderRequest implements BaseRequest {
      * 签名类型，默认为MD5，支持HMAC-SHA256和MD5。
      */
     @XmlElement(name = "sign_type")
-    private String signType;
+    private String sign_type;
 
     /**
      * 商品描述
      * 商品简单描述，该字段请按照规范传递，具体请见参数规定
+     * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_2
      */
     @XmlElement(name = "body")
     @NonNull
@@ -83,7 +85,6 @@ public class UnifiedOrderRequest implements BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/danpin.php?chapter=9_102&index=2
      */
     @XmlElement(name = "detail")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String detail;
 
     /**
@@ -100,7 +101,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      */
     @XmlElement(name = "out_trade_no")
     @NonNull
-    private String outTradeNo;
+    private String out_trade_no;
 
     /**
      * 标价币种
@@ -108,7 +109,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_2
      */
     @XmlElement(name = "fee_type")
-    private String feeType;
+    private String fee_type;
 
     /**
      * 标价金额
@@ -117,7 +118,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      */
     @XmlElement(name = "total_fee")
     @NonNull
-    private String totalFee;
+    private Integer total_fee;
 
     /**
      * 终端IP
@@ -125,7 +126,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      */
     @XmlElement(name = "spbill_create_ip")
     @NonNull
-    private String spBillCreateIp;
+    private String spbill_create_ip;
 
     /**
      * 交易起始时间
@@ -133,7 +134,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_2
      */
     @XmlElement(name = "time_start")
-    private String timeStart;
+    private String time_start;
 
     /**
      * 交易结束时间
@@ -144,7 +145,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_2
      */
     @XmlElement(name = "time_expire")
-    private String timeExpire;
+    private String time_expire;
 
     /**
      * 订单优惠标记
@@ -152,7 +153,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/tools/sp_coupon.php?chapter=12_7&index=3
      */
     @XmlElement(name = "goods_tag")
-    private String goodsTag;
+    private String goods_tag;
 
     /**
      * 通知地址
@@ -160,7 +161,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      */
     @XmlElement(name = "notify_url")
     @NonNull
-    private String notifyUrl;
+    private String notify_url;
 
     /**
      * 交易类型
@@ -169,14 +170,14 @@ public class UnifiedOrderRequest implements BaseRequest {
      */
     @XmlElement(name = "trade_type")
     @NonNull
-    private String tradeType;
+    private String trade_type;
 
     /**
      * 商品ID
      * trade_type=NATIVE时，此参数必传。此参数为二维码中包含的商品ID，商户自行定义。
      */
     @XmlElement(name = "product_id")
-    private String productId;
+    private String product_id;
 
     /**
      * 指定支付方式
@@ -184,7 +185,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/tools/sp_coupon.php?chapter=12_7&index=3
      */
     @XmlElement(name = "limit_pay")
-    private String limitPay;
+    private String limit_pay;
 
     /**
      * 用户标识
@@ -195,7 +196,7 @@ public class UnifiedOrderRequest implements BaseRequest {
      * 【企业号userid转openid接口】http://qydev.weixin.qq.com/wiki/index.php?title=Userid与openid互换接口
      */
     @XmlElement(name = "openid")
-    private String openId;
+    private String openid;
 
     /**
      * 电子发票入口开放标识
@@ -215,10 +216,98 @@ public class UnifiedOrderRequest implements BaseRequest {
      * - address 门店详细地址 ，由商户自定义
      */
     @XmlElement(name = "scene_info")
-    private String sceneInfo;
+    private String scene_info;
 
+    public String getAppid() {
+        return appid;
+    }
 
+    public String getMch_id() {
+        return mch_id;
+    }
 
+    public String getDevice_info() {
+        return device_info;
+    }
 
+    public String getNonce_str() {
+        return nonce_str;
+    }
 
+    public String getSign() {
+        return sign;
+    }
+
+    public String getSign_type() {
+        return sign_type;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    @XmlCDATA
+    public String getDetail() {
+        return detail;
+    }
+
+    public String getAttach() {
+        return attach;
+    }
+
+    public String getOut_trade_no() {
+        return out_trade_no;
+    }
+
+    public String getFee_type() {
+        return fee_type;
+    }
+
+    public Integer getTotal_fee() {
+        return total_fee;
+    }
+
+    public String getSpbill_create_ip() {
+        return spbill_create_ip;
+    }
+
+    public String getTime_start() {
+        return time_start;
+    }
+
+    public String getTime_expire() {
+        return time_expire;
+    }
+
+    public String getGoods_tag() {
+        return goods_tag;
+    }
+
+    public String getNotify_url() {
+        return notify_url;
+    }
+
+    public String getTrade_type() {
+        return trade_type;
+    }
+
+    public String getProduct_id() {
+        return product_id;
+    }
+
+    public String getLimit_pay() {
+        return limit_pay;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public String getReceipt() {
+        return receipt;
+    }
+
+    public String getScene_info() {
+        return scene_info;
+    }
 }

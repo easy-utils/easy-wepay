@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class JaxbMarshallerFactory implements KeyedPooledObjectFactory{
 
-    protected Map<Class<?>,JAXBContext> context = new HashMap<>();
+    Map<Class<?>,JAXBContext> context = new HashMap<>();
 
     @Override
     public PooledObject makeObject(Object key) throws Exception {

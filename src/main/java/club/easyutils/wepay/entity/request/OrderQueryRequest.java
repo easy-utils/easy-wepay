@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name="xml")
-public class OrderQueryRequest implements BaseRequest {
+public class OrderQueryRequest extends BaseRequest {
 
     // ---------- Request Attributes ----------
 

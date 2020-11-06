@@ -1,6 +1,5 @@
 package club.easyutils.wepay.util;
 
-import club.easyutils.wepay.agency.CustomXmlStreamWriter;
 import club.easyutils.wepay.util.xml.JaxbMarshallerFactory;
 import club.easyutils.wepay.util.xml.JaxbUnmarshallerFactory;
 import org.apache.commons.pool2.KeyedObjectPool;
@@ -31,22 +30,16 @@ public class XmlUtil {
 
     private static Logger logger = LoggerFactory.getLogger(XmlUtil.class);
 
-    protected static KeyedObjectPool MarshallerPool = new GenericKeyedObjectPool(new JaxbMarshallerFactory());
+    static KeyedObjectPool MarshallerPool = new GenericKeyedObjectPool(new JaxbMarshallerFactory());
 
-    protected static KeyedObjectPool UnmarshallerPool = new GenericKeyedObjectPool(new JaxbUnmarshallerFactory());
+    static KeyedObjectPool UnmarshallerPool = new GenericKeyedObjectPool(new JaxbUnmarshallerFactory());
 
     public static String beanToXml(Object object, Boolean needFormat){
         Marshaller marshaller = null;
         try{
             marshaller = (Marshaller) MarshallerPool.borrowObject(object.getClass());
             StringWriter writer = new StringWriter();
-            XMLStreamWriter streamWriter = XMLOutputFactory.newInstance().createXMLStreamWriter(writer);
-            XMLStreamWriter xmlStreamWriter = (XMLStreamWriter) Proxy.newProxyInstance(
-                    streamWriter.getClass().getClassLoader(),
-                    streamWriter.getClass().getInterfaces(),
-                    new CustomXmlStreamWriter(streamWriter)
-            );
-            marshaller.marshal(object, xmlStreamWriter);
+            marshaller.marshal(object, writer);
             String output = "<?xml version='1.0' encoding='UTF-8'?>";
             if (needFormat){
                 return output + xmlFormat(writer.toString());

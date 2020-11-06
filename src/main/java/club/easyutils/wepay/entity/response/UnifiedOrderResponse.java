@@ -3,7 +3,10 @@ package club.easyutils.wepay.entity.response;
 import club.easyutils.wepay.adapter.xml.CdataJaxbAdapter;
 import club.easyutils.wepay.entity.BaseResponse;
 import lombok.*;
+import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -12,12 +15,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 统一创单响应实体类
  * @author rainyblossom
  */
-@Setter
 @Builder
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name="xml")
-public class UnifiedOrderResponse implements BaseResponse {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class UnifiedOrderResponse extends BaseResponse {
 
     // ---------- Response Attributes ----------
 
@@ -27,7 +31,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * 此字段是通信标识，非交易标识，交易是否成功需要查看result_code来判断
      */
     @XmlElement(name="return_code")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String returnCode;
 
     /**
@@ -35,7 +38,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * 当return_code为FAIL时返回信息为错误原因，例如：签名失败、参数格式校验错误
      */
     @XmlElement(name="return_msg")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String returnMsg;
 
     // ---------- 以下字段在return_code为SUCCESS的时候有返回 ----------
@@ -45,7 +47,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * 调用接口提交的公众账号ID
      */
     @XmlElement(name = "appid")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String appId;
 
     /**
@@ -69,7 +70,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * 微信返回的随机字符串
      */
     @XmlElement(name = "nonce_str")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String nonceStr;
 
     /**
@@ -78,7 +78,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_3
      */
     @XmlElement(name = "sign")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String sign;
 
     /**
@@ -86,7 +85,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * SUCCESS/FAIL
      */
     @XmlElement(name = "result_code")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String resultCode;
 
     /**
@@ -95,7 +93,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_1
      */
     @XmlElement(name = "err_code")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String errCode;
 
     /**
@@ -104,7 +101,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_1
      */
     @XmlElement(name = "err_code_des")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String errCodeDes;
 
     /**
@@ -113,7 +109,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_2
      */
     @XmlElement(name = "err_code_des")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String tradeType;
 
     /**
@@ -121,7 +116,6 @@ public class UnifiedOrderResponse implements BaseResponse {
      * 微信生成的预支付会话标识，用于后续接口调用中使用，该值有效期为2小时
      */
     @XmlElement(name = "prepay_id")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String prepayId;
 
     /**
@@ -130,8 +124,70 @@ public class UnifiedOrderResponse implements BaseResponse {
      * 注意：code_url的值并非固定，使用时按照URL格式转成二维码即可
      */
     @XmlElement(name = "code_url")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String codeUrl;
 
+    @XmlCDATA
+    public String getReturnCode() {
+        return returnCode;
+    }
 
+    @XmlCDATA
+    public String getReturnMsg() {
+        return returnMsg;
+    }
+
+    @XmlCDATA
+    public String getAppId() {
+        return appId;
+    }
+
+    @XmlCDATA
+    public String getMchId() {
+        return mchId;
+    }
+
+    @XmlCDATA
+    public String getDeviceInfo() {
+        return deviceInfo;
+    }
+
+    @XmlCDATA
+    public String getNonceStr() {
+        return nonceStr;
+    }
+
+    @XmlCDATA
+    public String getSign() {
+        return sign;
+    }
+
+    @XmlCDATA
+    public String getResultCode() {
+        return resultCode;
+    }
+
+    @XmlCDATA
+    public String getErrCode() {
+        return errCode;
+    }
+
+    @XmlCDATA
+    public String getErrCodeDes() {
+        return errCodeDes;
+    }
+
+    @XmlCDATA
+    public String getTradeType() {
+        return tradeType;
+    }
+
+    @XmlCDATA
+    public String getPrepayId() {
+        return prepayId;
+    }
+
+    @XmlCDATA
+    public String getCodeUrl() {
+        return codeUrl;
+    }
 }

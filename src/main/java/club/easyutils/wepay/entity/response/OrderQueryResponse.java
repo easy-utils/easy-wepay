@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name="xml")
-public class OrderQueryResponse implements BaseResponse {
+public class OrderQueryResponse extends BaseResponse {
 
     // ---------- Response Attributes ----------
 
