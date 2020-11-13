@@ -2,14 +2,28 @@ package club.easyutils.wepay.entity.request;
 
 import club.easyutils.wepay.adapter.xml.CdataJaxbAdapter;
 import club.easyutils.wepay.entity.BaseRequest;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * 支付结果通知
  * @author rainyblossom
  */
+@Builder
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@XmlRootElement(name="xml")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PayResultRequest extends BaseRequest {
 
     // ---------- Response Attributes ----------
@@ -244,5 +258,132 @@ public class PayResultRequest extends BaseRequest {
     @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String timeEnd;
 
+    @XmlCDATA
+    public String getReturnCode() {
+        return returnCode;
+    }
 
+    @XmlCDATA
+    public String getReturnMsg() {
+        return returnMsg;
+    }
+
+    @XmlCDATA
+    public String getAppId() {
+        return appId;
+    }
+
+    @XmlCDATA
+    public String getMchId() {
+        return mchId;
+    }
+
+    @XmlCDATA
+    public String getNonceStr() {
+        return nonceStr;
+    }
+
+    @XmlCDATA
+    public String getSign() {
+        return sign;
+    }
+
+    @XmlCDATA
+    public String getResultCode() {
+        return resultCode;
+    }
+
+    @XmlCDATA
+    public String getErrCode() {
+        return errCode;
+    }
+
+    @XmlCDATA
+    public String getErrCodeDes() {
+        return errCodeDes;
+    }
+
+    @XmlCDATA
+    public String getOpenid() {
+        return openid;
+    }
+
+    @XmlCDATA
+    public String getIsSubscribe() {
+        return isSubscribe;
+    }
+
+    @XmlCDATA
+    public String getTradeType() {
+        return tradeType;
+    }
+
+    @XmlCDATA
+    public String getBankType() {
+        return bankType;
+    }
+
+    public String getTotalFee() {
+        return totalFee;
+    }
+
+    @XmlCDATA
+    public String getSettlementTotalFee() {
+        return settlementTotalFee;
+    }
+
+    @XmlCDATA
+    public String getFeeType() {
+        return feeType;
+    }
+
+    @XmlCDATA
+    public String getCashFee() {
+        return cashFee;
+    }
+
+    @XmlCDATA
+    public String getCashFeeType() {
+        return cashFeeType;
+    }
+
+    @XmlCDATA
+    public String getCouponFee() {
+        return couponFee;
+    }
+
+    @XmlCDATA
+    public String getCouponCount() {
+        return couponCount;
+    }
+
+    @XmlCDATA
+    public String getCouponType() {
+        return couponType;
+    }
+
+    @XmlCDATA
+    public String getCouponId() {
+        return couponId;
+    }
+
+    @XmlCDATA
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    @XmlCDATA
+    public String getOutTradeNo() {
+        return outTradeNo;
+    }
+
+    @XmlCDATA
+    public String getAttach() {
+        return attach;
+    }
+
+    @XmlCDATA
+    public String getTimeEnd() {
+        return timeEnd;
+    }
 }
