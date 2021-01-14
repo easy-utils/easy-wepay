@@ -2,9 +2,15 @@ package club.easyutils.wepay.entity.response;
 
 import club.easyutils.wepay.adapter.xml.CdataJaxbAdapter;
 import club.easyutils.wepay.entity.BaseRequest;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
@@ -12,6 +18,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @author rainyblossom
  */
 @Builder
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@XmlRootElement(name="xml")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PayResultResponse extends BaseRequest {
 
     // ---------- Response Attributes ----------

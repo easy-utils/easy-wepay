@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.math.BigInteger;
 
 /**
  * 统一创单请求实体类
@@ -118,7 +119,7 @@ public class UnifiedOrderRequest extends BaseRequest {
      */
     @XmlElement(name = "total_fee")
     @NonNull
-    private Integer total_fee;
+    private BigInteger total_fee;
 
     /**
      * 终端IP
@@ -263,7 +264,7 @@ public class UnifiedOrderRequest extends BaseRequest {
         return fee_type;
     }
 
-    public Integer getTotal_fee() {
+    public BigInteger getTotal_fee() {
         return total_fee;
     }
 

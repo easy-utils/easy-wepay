@@ -126,6 +126,9 @@ public class UnifiedOrderResponse extends BaseResponse {
     @XmlElement(name = "code_url")
     private String codeUrl;
 
+    @XmlElement(name = "mweb_url")
+    private String wapUrl;
+
     @XmlCDATA
     public String getReturnCode() {
         return returnCode;
@@ -189,5 +192,10 @@ public class UnifiedOrderResponse extends BaseResponse {
     @XmlCDATA
     public String getCodeUrl() {
         return codeUrl;
+    }
+
+    @XmlCDATA
+    public String getWapUrl() {
+        return wapUrl;
     }
 }
