@@ -25,7 +25,7 @@ public class OrderQueryRequest extends BaseRequest {
      */
     @XmlElement(name="appid")
     @NonNull
-    private String appId;
+    private String appid;
 
     /**
      * 商户号
@@ -33,14 +33,14 @@ public class OrderQueryRequest extends BaseRequest {
      */
     @XmlElement(name="mch_id")
     @NonNull
-    private String mchId;
+    private String mch_id;
 
     /**
      * 微信订单号
      * 微信的订单号，建议优先使用。和商户订单号二选一
      */
     @XmlElement(name = "transaction_id")
-    private String transactionId;
+    private String transaction_id;
 
     /**
      * 商户订单号
@@ -48,7 +48,7 @@ public class OrderQueryRequest extends BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_2
      */
     @XmlElement(name = "out_trade_no")
-    private String outTradeNo;
+    private String out_trade_no;
 
 
     /**
@@ -58,7 +58,7 @@ public class OrderQueryRequest extends BaseRequest {
      */
     @XmlElement(name = "nonce_str")
     @NonNull
-    private String nonceStr;
+    private String nonce_str;
 
     /**
      * 签名
@@ -73,5 +73,5 @@ public class OrderQueryRequest extends BaseRequest {
      * 签名类型，默认为MD5，支持HMAC-SHA256和MD5。
      */
     @XmlElement(name = "sign_type")
-    private String signType;
+    private String sign_type;
 }

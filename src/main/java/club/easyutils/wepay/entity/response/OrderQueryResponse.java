@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.math.BigDecimal;
 
 /**
  * 订单查询响应实体类
@@ -110,38 +109,6 @@ public class OrderQueryResponse extends BaseResponse {
     // ---------- 以下字段在return_code 、result_code、trade_state都为SUCCESS时有返回 ，如trade_state不为 SUCCESS，则只返回out_trade_no（必传）和attach（选传）。 ----------
 
     /**
-     * 设备号
-     * 自定义参数，可以为请求支付的终端设备号等
-     */
-    @XmlElement(name = "device_info")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String deviceInfo;
-
-    /**
-     * 用户标识
-     * 用户在商户appid下的唯一标识
-     */
-    @XmlElement(name = "openid")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String openid;
-
-    /**
-     * 用户是否关注公众账号，Y-关注，N-未关注
-     */
-    @XmlElement(name = "is_subscribe")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String subscribe;
-
-    /**
-     * 交易类型
-     * JSAPI-JSAPI支付、NATIVE-Native支付、APP-APP支付，说明详见参数规定
-     * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_2
-     */
-    @XmlElement(name = "trade_type")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String tradeType;
-
-    /**
      * SUCCESS--支付成功
      * REFUND--转入退款
      * NOTPAY--未支付
@@ -155,104 +122,6 @@ public class OrderQueryResponse extends BaseResponse {
     @XmlElement(name = "trade_state")
     @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String tradeState;
-
-    /**
-     * 银行类型，采用字符串类型的银行标识
-     */
-    @XmlElement(name = "bank_type")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String bankType;
-
-    /**
-     * 订单总金额，单位为分
-     */
-    @XmlElement(name = "total_fee")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private BigDecimal totalFee;
-
-    /**
-     * 当订单使用了免充值型优惠券后返回该参数，应结订单金额=订单金额-免充值优惠券金额。
-     */
-    @XmlElement(name = "settlement_total_fee")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String settlementTotalFee;
-
-    /**
-     * 货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
-     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
-     */
-    @XmlElement(name = "fee_type")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String feeType;
-
-    /**
-     * 现金支付金额订单现金支付金额，详见支付金额
-     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
-     */
-    @XmlElement(name = "cash_fee")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String cashFee;
-
-    /**
-     * 货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
-     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
-     */
-    @XmlElement(name = "cash_fee_type")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String cashFeeType;
-
-    /**
-     * “代金券”金额<=订单金额，订单金额-“代金券”金额=现金支付金额，详见支付金额
-     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
-     */
-    @XmlElement(name = "coupon_fee")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String couponFee;
-
-    /**
-     * 代金券使用数量
-     */
-    @XmlElement(name = "coupon_count")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String couponCount;
-
-    /**
-     * 微信支付订单号
-     */
-    @XmlElement(name = "transaction_id")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String transactionId;
-
-    /**
-     * 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。
-     */
-    @XmlElement(name = "out_trade_no")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String outTradeNo;
-
-    /**
-     * 附加数据，原样返回
-     */
-    @XmlElement(name = "attach")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String attach;
-
-    /**
-     * 订单支付时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。其他详见时间规则
-     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
-     */
-    @XmlElement(name = "time_end")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String timeEnd;
-
-    /**
-     * 对当前查询订单状态的描述和下一步操作的指引
-     */
-    @XmlElement(name = "trade_state_desc")
-    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String tradeStateDesc;
-
-    // ----- ----- Getter with XmlCDATA Tag ----- -----
 
     @XmlCDATA
     public String getReturnCode() {
@@ -300,92 +169,7 @@ public class OrderQueryResponse extends BaseResponse {
     }
 
     @XmlCDATA
-    public String getDeviceInfo() {
-        return deviceInfo;
-    }
-
-    @XmlCDATA
-    public String getOpenid() {
-        return openid;
-    }
-
-    @XmlCDATA
-    public String getTradeType() {
-        return tradeType;
-    }
-
-    @XmlCDATA
-    public String getSubscribe() {
-        return subscribe;
-    }
-
-    @XmlCDATA
     public String getTradeState() {
         return tradeState;
-    }
-
-    @XmlCDATA
-    public String getBankType() {
-        return bankType;
-    }
-
-    @XmlCDATA
-    public BigDecimal getTotalFee() {
-        return totalFee;
-    }
-
-    @XmlCDATA
-    public String getSettlementTotalFee() {
-        return settlementTotalFee;
-    }
-
-    @XmlCDATA
-    public String getFeeType() {
-        return feeType;
-    }
-
-    @XmlCDATA
-    public String getCashFee() {
-        return cashFee;
-    }
-
-    @XmlCDATA
-    public String getCashFeeType() {
-        return cashFeeType;
-    }
-
-    @XmlCDATA
-    public String getCouponFee() {
-        return couponFee;
-    }
-
-    @XmlCDATA
-    public String getCouponCount() {
-        return couponCount;
-    }
-
-    @XmlCDATA
-    public String getTransactionId() {
-        return transactionId;
-    }
-
-    @XmlCDATA
-    public String getOutTradeNo() {
-        return outTradeNo;
-    }
-
-    @XmlCDATA
-    public String getAttach() {
-        return attach;
-    }
-
-    @XmlCDATA
-    public String getTimeEnd() {
-        return timeEnd;
-    }
-
-    @XmlCDATA
-    public String getTradeStateDesc() {
-        return tradeStateDesc;
     }
 }
