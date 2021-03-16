@@ -15,9 +15,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * @author rainyblossom
+ * WePayOrderServiceImpl
+ *
+ * @author RainyBlossom
+ * @date 2021/3/16
  */
-public interface WePayOrderService {
+@Service
+public class WePayOrderServiceImpl implements WePayOrderService {
 
     /**
      * 统一下单接口
@@ -27,7 +31,11 @@ public interface WePayOrderService {
      * 文档地址 https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_1
      *
      */
-    UnifiedOrderResponse create(UnifiedOrderRequest unifiedOrderRequest);
+    @Override
+    public UnifiedOrderResponse create(UnifiedOrderRequest unifiedOrderRequest){
+        String xmlStr = HttpUtil.doPost(OrderConfig.WEPAY_ORDER_UNIFIED.getUrl(), unifiedOrderRequest);
+        return XmlUtil.xmlToBean(UnifiedOrderResponse.class, xmlStr);
+    }
 
     /**
      * 以下情况需要调用关单接口：
@@ -36,7 +44,11 @@ public interface WePayOrderService {
      * 注意：订单生成后不能马上调用关单接口，最短调用时间间隔为5分钟。
      *
      */
-    OrderCloseResponse close(OrderCloseRequest orderCloseRequest);
+    @Override
+    public OrderCloseResponse close(OrderCloseRequest orderCloseRequest){
+        String xmlStr = HttpUtil.doPost(OrderConfig.WEPAY_ORDER_CLOSE.getUrl(), orderCloseRequest);
+        return XmlUtil.xmlToBean(OrderCloseResponse.class, xmlStr);
+    }
 
     /**
      * 该接口提供所有微信支付订单的查询，商户可以通过查询订单接口主动查询订单状态，完成下一步的业务逻辑。
@@ -45,10 +57,12 @@ public interface WePayOrderService {
      * ◆ 调用支付接口后，返回系统错误或未知交易状态情况；
      * ◆ 调用付款码支付API，返回USERPAYING的状态；
      * ◆ 调用关单或撤销接口API之前，需确认支付状态；
-     * @param orderQueryRequest
-     * @return
      */
-    OrderQueryResponse query(OrderQueryRequest orderQueryRequest);
+    @Override
+    public OrderQueryResponse query(OrderQueryRequest orderQueryRequest){
+        String xmlStr = HttpUtil.doPost(OrderConfig.WEPAY_ORDER_QUERY.getUrl(), orderQueryRequest);
+        return XmlUtil.xmlToBean(OrderQueryResponse.class, xmlStr);
+    }
 
     /**
      * 支付完成后，微信会把相关支付结果及用户信息通过数据流的形式发送给商户，商户需要接收处理，并按文档规范返回应答。
@@ -66,5 +80,8 @@ public interface WePayOrderService {
      *
      * @author rainyblossom
      */
-    PayResultResponse notify(@RequestBody PayResultRequest resultRequest);
+    @Override
+    public PayResultResponse notify(@RequestBody PayResultRequest resultRequest){
+        return PayResultResponse.builder().build();
+    }
 }
