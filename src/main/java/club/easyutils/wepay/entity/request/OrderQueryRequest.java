@@ -2,6 +2,7 @@ package club.easyutils.wepay.entity.request;
 
 import club.easyutils.wepay.entity.BaseRequest;
 import lombok.*;
+import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -74,4 +75,39 @@ public class OrderQueryRequest extends BaseRequest {
      */
     @XmlElement(name = "sign_type")
     private String sign_type;
+
+    @XmlCDATA
+    public String getAppid() {
+        return appid;
+    }
+
+    @XmlCDATA
+    public String getMch_id() {
+        return mch_id;
+    }
+
+    @XmlCDATA
+    public String getTransaction_id() {
+        return transaction_id;
+    }
+
+    @XmlCDATA
+    public String getOut_trade_no() {
+        return out_trade_no;
+    }
+
+    @XmlCDATA
+    public String getNonce_str() {
+        return nonce_str;
+    }
+
+    @XmlCDATA
+    public String getSign() {
+        return sign;
+    }
+
+    @XmlCDATA
+    public String getSign_type() {
+        return sign_type;
+    }
 }
