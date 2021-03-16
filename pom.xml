@@ -9,7 +9,7 @@
   <groupId>club.easy-utils</groupId>
   <artifactId>easy-wepay</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.3-SNAPSHOT</version>
+  <version>0.0.4-SNAPSHOT</version>
 
   <!-- 描述信息 -->
   <name>Easy WePay</name>
@@ -44,7 +44,7 @@
   </issueManagement>
 
   <!-- 发布管理，要想发布到中央库就必须要配置的一个节点，以下两个链接可以从issue审核结果中找到 -->
-  <!-- 其中id为自定义，后面会在maven/config/settings.xml中配置对应的服务器信息 -->
+<!--  &lt;!&ndash; 其中id为自定义，后面会在maven/config/settings.xml中配置对应的服务器信息 &ndash;&gt;-->
 <!--      <distributionManagement>-->
 <!--          <snapshotRepository>-->
 <!--              <id>sonatype</id>-->
@@ -55,13 +55,6 @@
 <!--              <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>-->
 <!--          </repository>-->
 <!--      </distributionManagement>-->
-<!--  <distributionManagement>-->
-<!--    <repository>-->
-<!--      <id>easy-wepay</id>-->
-<!--      <name>easy wepay</name>-->
-<!--      <url>https://maven.pkg.github.com/easy-utils/easy-wepay</url>-->
-<!--    </repository>-->
-<!--  </distributionManagement>-->
     <distributionManagement>
         <repository>
             <id>releases</id>
@@ -194,18 +187,18 @@
         </configuration>
       </plugin>
       <!-- 以下都为上传jar默认配置不做修改 -->
-      <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.6.8</version>
-          <!-- autoReleaseAfterClose的值为true，则脚本会自动完成在平台上close、release的操作，至此你将成功发布了 -->
-          <extensions>true</extensions>
-          <configuration>
-              <serverId>sonatype</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
-          </configuration>
-      </plugin>
+<!--      <plugin>-->
+<!--          <groupId>org.sonatype.plugins</groupId>-->
+<!--          <artifactId>nexus-staging-maven-plugin</artifactId>-->
+<!--          <version>1.6.8</version>-->
+<!--          &lt;!&ndash; autoReleaseAfterClose的值为true，则脚本会自动完成在平台上close、release的操作，至此你将成功发布了 &ndash;&gt;-->
+<!--          <extensions>true</extensions>-->
+<!--          <configuration>-->
+<!--              <serverId>sonatype</serverId>-->
+<!--              <nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+<!--              <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+<!--          </configuration>-->
+<!--      </plugin>-->
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

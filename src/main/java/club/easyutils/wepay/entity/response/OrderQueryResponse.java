@@ -6,20 +6,25 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.math.BigDecimal;
 
 /**
  * 订单查询响应实体类
  * @author rainyblossom
  */
-@Setter
 @Builder
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name="xml")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class OrderQueryResponse extends BaseResponse {
 
     // ---------- Response Attributes ----------
@@ -121,29 +126,266 @@ public class OrderQueryResponse extends BaseResponse {
     private String openid;
 
     /**
+     * 用户是否关注公众账号，Y-关注，N-未关注
+     */
+    @XmlElement(name = "is_subscribe")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String subscribe;
+
+    /**
      * 交易类型
      * JSAPI-JSAPI支付、NATIVE-Native支付、APP-APP支付，说明详见参数规定
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_2
      */
-    @XmlElement(name = "err_code_des")
+    @XmlElement(name = "trade_type")
     @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
     private String tradeType;
 
     /**
-     * 预支付交易会话标识
-     * 微信生成的预支付会话标识，用于后续接口调用中使用，该值有效期为2小时
+     * SUCCESS--支付成功
+     * REFUND--转入退款
+     * NOTPAY--未支付
+     * CLOSED--已关闭
+     * REVOKED--已撤销(刷卡支付)
+     * USERPAYING--用户支付中
+     * PAYERROR--支付失败(其他原因，如银行返回失败)
+     * ACCEPT--已接收，等待扣款
+     * 支付状态机请见下单API页面
      */
-    @XmlElement(name = "prepay_id")
+    @XmlElement(name = "trade_state")
     @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String prepayId;
+    private String tradeState;
 
     /**
-     * 二维码链接
-     * trade_type=NATIVE时有返回，此url用于生成支付二维码，然后提供给用户进行扫码支付。
-     * 注意：code_url的值并非固定，使用时按照URL格式转成二维码即可
+     * 银行类型，采用字符串类型的银行标识
      */
-    @XmlElement(name = "code_url")
+    @XmlElement(name = "bank_type")
     @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
-    private String codeUrl;
+    private String bankType;
 
+    /**
+     * 订单总金额，单位为分
+     */
+    @XmlElement(name = "total_fee")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private BigDecimal totalFee;
+
+    /**
+     * 当订单使用了免充值型优惠券后返回该参数，应结订单金额=订单金额-免充值优惠券金额。
+     */
+    @XmlElement(name = "settlement_total_fee")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String settlementTotalFee;
+
+    /**
+     * 货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
+     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
+     */
+    @XmlElement(name = "fee_type")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String feeType;
+
+    /**
+     * 现金支付金额订单现金支付金额，详见支付金额
+     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
+     */
+    @XmlElement(name = "cash_fee")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String cashFee;
+
+    /**
+     * 货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
+     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
+     */
+    @XmlElement(name = "cash_fee_type")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String cashFeeType;
+
+    /**
+     * “代金券”金额<=订单金额，订单金额-“代金券”金额=现金支付金额，详见支付金额
+     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
+     */
+    @XmlElement(name = "coupon_fee")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String couponFee;
+
+    /**
+     * 代金券使用数量
+     */
+    @XmlElement(name = "coupon_count")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String couponCount;
+
+    /**
+     * 微信支付订单号
+     */
+    @XmlElement(name = "transaction_id")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String transactionId;
+
+    /**
+     * 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。
+     */
+    @XmlElement(name = "out_trade_no")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String outTradeNo;
+
+    /**
+     * 附加数据，原样返回
+     */
+    @XmlElement(name = "attach")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String attach;
+
+    /**
+     * 订单支付时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。其他详见时间规则
+     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2
+     */
+    @XmlElement(name = "time_end")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String timeEnd;
+
+    /**
+     * 对当前查询订单状态的描述和下一步操作的指引
+     */
+    @XmlElement(name = "trade_state_desc")
+    @XmlJavaTypeAdapter(value= CdataJaxbAdapter.class)
+    private String tradeStateDesc;
+
+    // ----- ----- Getter with XmlCDATA Tag ----- -----
+
+    @XmlCDATA
+    public String getReturnCode() {
+        return returnCode;
+    }
+
+    @XmlCDATA
+    public String getReturnMsg() {
+        return returnMsg;
+    }
+
+    @XmlCDATA
+    public String getAppId() {
+        return appId;
+    }
+
+    @XmlCDATA
+    public String getMchId() {
+        return mchId;
+    }
+
+    @XmlCDATA
+    public String getNonceStr() {
+        return nonceStr;
+    }
+
+    @XmlCDATA
+    public String getSign() {
+        return sign;
+    }
+
+    @XmlCDATA
+    public String getResultCode() {
+        return resultCode;
+    }
+
+    @XmlCDATA
+    public String getErrCode() {
+        return errCode;
+    }
+
+    @XmlCDATA
+    public String getErrCodeDes() {
+        return errCodeDes;
+    }
+
+    @XmlCDATA
+    public String getDeviceInfo() {
+        return deviceInfo;
+    }
+
+    @XmlCDATA
+    public String getOpenid() {
+        return openid;
+    }
+
+    @XmlCDATA
+    public String getTradeType() {
+        return tradeType;
+    }
+
+    @XmlCDATA
+    public String getSubscribe() {
+        return subscribe;
+    }
+
+    @XmlCDATA
+    public String getTradeState() {
+        return tradeState;
+    }
+
+    @XmlCDATA
+    public String getBankType() {
+        return bankType;
+    }
+
+    @XmlCDATA
+    public BigDecimal getTotalFee() {
+        return totalFee;
+    }
+
+    @XmlCDATA
+    public String getSettlementTotalFee() {
+        return settlementTotalFee;
+    }
+
+    @XmlCDATA
+    public String getFeeType() {
+        return feeType;
+    }
+
+    @XmlCDATA
+    public String getCashFee() {
+        return cashFee;
+    }
+
+    @XmlCDATA
+    public String getCashFeeType() {
+        return cashFeeType;
+    }
+
+    @XmlCDATA
+    public String getCouponFee() {
+        return couponFee;
+    }
+
+    @XmlCDATA
+    public String getCouponCount() {
+        return couponCount;
+    }
+
+    @XmlCDATA
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    @XmlCDATA
+    public String getOutTradeNo() {
+        return outTradeNo;
+    }
+
+    @XmlCDATA
+    public String getAttach() {
+        return attach;
+    }
+
+    @XmlCDATA
+    public String getTimeEnd() {
+        return timeEnd;
+    }
+
+    @XmlCDATA
+    public String getTradeStateDesc() {
+        return tradeStateDesc;
+    }
 }

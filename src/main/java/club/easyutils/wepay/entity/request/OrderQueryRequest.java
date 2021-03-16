@@ -40,7 +40,6 @@ public class OrderQueryRequest extends BaseRequest {
      * 微信的订单号，建议优先使用。和商户订单号二选一
      */
     @XmlElement(name = "transaction_id")
-    @NonNull
     private String transactionId;
 
     /**
@@ -49,7 +48,6 @@ public class OrderQueryRequest extends BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_2
      */
     @XmlElement(name = "out_trade_no")
-    @NonNull
     private String outTradeNo;
 
 
@@ -68,7 +66,6 @@ public class OrderQueryRequest extends BaseRequest {
      * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_3
      */
     @XmlElement(name = "sign")
-    @NonNull
     private String sign;
 
     /**
