@@ -4,6 +4,8 @@ import club.easyutils.wepay.entity.BaseRequest;
 import lombok.*;
 import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -11,11 +13,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 订单查询请求实体类
  * @author rainyblossom
  */
-@Setter
 @Builder
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name="xml")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class OrderQueryRequest extends BaseRequest {
 
     // ---------- Request Attributes ----------
@@ -76,37 +79,30 @@ public class OrderQueryRequest extends BaseRequest {
     @XmlElement(name = "sign_type")
     private String sign_type;
 
-    @XmlCDATA
     public String getAppid() {
         return appid;
     }
 
-    @XmlCDATA
     public String getMch_id() {
         return mch_id;
     }
 
-    @XmlCDATA
     public String getTransaction_id() {
         return transaction_id;
     }
 
-    @XmlCDATA
     public String getOut_trade_no() {
         return out_trade_no;
     }
 
-    @XmlCDATA
     public String getNonce_str() {
         return nonce_str;
     }
 
-    @XmlCDATA
     public String getSign() {
         return sign;
     }
 
-    @XmlCDATA
     public String getSign_type() {
         return sign_type;
     }
